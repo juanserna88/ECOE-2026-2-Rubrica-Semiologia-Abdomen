@@ -105,7 +105,7 @@
 <script>
 (function(){
   var KEY='ecoe-semiologia-2026-2';
-  var DEF_ENDPOINT='https://script.google.com/macros/s/AKfycbyE7PXcCB8-PyAJ7Y84u-Gjav0vD4-h4G-ICW4rlGoeeTKNsJfMwcxfNvKgmmcY-rHL/exec';
+  var DEF_ENDPOINT='https://script.google.com/macros/s/AKfycbzZCMMdYDeRBvmMJhyFvFX4t_lmXgVPVooAaupf1ATSE3hVYhQEqJwZ9REAgL76Ps0c/exec';
   var DEF_SHEET='1c8mwZuTwqgv0_Cs7H4ZZu9iazD1r53sbpvDTKgHxO2M';
   var CAMPOS=['nombre','docente','documento','programa','grupo','rotacion','periodo','fecha','nota1','nota2','observaciones','emailEstudiante','emailEvaluador','endpoint','sheetId'];
 
@@ -123,17 +123,17 @@
       'Pregunta por antecedentes'
     ]},
     {titulo:'3. Examen físico', items:[
-      'Realiza inspección de abdomen',
-      'Realiza auscultación de abdomen',
-      'Realiza palpación superficial',
-      'Busca signo de Murphy'
+      'Realiza inspección del abdomen',
+      'Realiza auscultación del abdomen',
+      'Realiza percusión del abdomen',
+      {t:'Realiza palpación del abdomen', nota:'Búsqueda de signo de Murphy'}
     ]},
     {titulo:'4. Verbaliza diagnóstico', items:[
       {t:'Colecistitis aguda', nota:'Por signo de Murphy positivo'}
     ]}
   ];
   function txt(it){ return typeof it==='string'?it:it.t; }
-  function etiqueta(it){ return typeof it==='string'?it:((it.grupo?it.grupo+' · ':'')+it.t); }
+  function etiqueta(it){ return typeof it==='string'?it:((it.grupo?it.grupo+' · ':'')+it.t+(it.nota?' ('+it.nota.charAt(0).toLowerCase()+it.nota.slice(1)+')':'')); }
   var resp={};
   var cont=document.getElementById('secciones');
   RUBRICA.forEach(function(sec,si){
