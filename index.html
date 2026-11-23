@@ -35,8 +35,9 @@
 
     <section style="display:flex;flex-direction:column;gap:14px">
       <h2 style="margin:0;font-size:13px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;color:#00423C;border-bottom:2px solid #e2eae8;padding-bottom:8px">Identificación del estudiante</h2>
-      <div style="display:grid;grid-template-columns:1fr;gap:14px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px">
         <label style="display:flex;flex-direction:column;gap:5px;font-size:11px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;color:#5a6a7a">Nombre completo del estudiante<input id="nombre" type="text" placeholder="Apellidos y nombres" style="padding:9px 11px;border:1px solid #c3d2ce;border-radius:4px;font-size:14.5px;color:#1f2933;text-transform:none;letter-spacing:0;font-weight:400;font-family:inherit" /></label>
+        <label style="display:flex;flex-direction:column;gap:5px;font-size:11px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;color:#5a6a7a">Nombre del docente evaluador<input id="docente" type="text" placeholder="Nombre del docente" style="padding:9px 11px;border:1px solid #c3d2ce;border-radius:4px;font-size:14.5px;color:#1f2933;text-transform:none;letter-spacing:0;font-weight:400;font-family:inherit" /></label>
         <input id="programa" type="hidden" value="Medicina" />
         <input id="periodo" type="hidden" value="2026-2" />
         <input id="fecha" type="hidden" />
@@ -104,9 +105,9 @@
 <script>
 (function(){
   var KEY='ecoe-semiologia-2026-2';
-  var DEF_ENDPOINT='https://script.google.com/macros/s/AKfycbwZbInqecpK94-hVBh9iq4GviiMynzjZDXV2Q5o6hhGfEwR4dtSW3jpM4NZfkuXDtvu/exec';
+  var DEF_ENDPOINT='https://script.google.com/macros/s/AKfycbyE7PXcCB8-PyAJ7Y84u-Gjav0vD4-h4G-ICW4rlGoeeTKNsJfMwcxfNvKgmmcY-rHL/exec';
   var DEF_SHEET='1c8mwZuTwqgv0_Cs7H4ZZu9iazD1r53sbpvDTKgHxO2M';
-  var CAMPOS=['nombre','documento','programa','grupo','rotacion','periodo','fecha','nota1','nota2','observaciones','emailEstudiante','emailEvaluador','endpoint','sheetId'];
+  var CAMPOS=['nombre','docente','documento','programa','grupo','rotacion','periodo','fecha','nota1','nota2','observaciones','emailEstudiante','emailEvaluador','endpoint','sheetId'];
 
   var RUBRICA=[
     {titulo:'1. Anamnesis', items:[
@@ -217,6 +218,7 @@
 
   function validar(email){
     if(!el.nombre.value.trim()) return 'Falta el nombre del estudiante.';
+    if(el.docente && !el.docente.value.trim()) return 'Falta el nombre del docente.';
     if(respondidos()<TOTAL) return 'Faltan '+(TOTAL-respondidos())+' ítems por calificar (SÍ / NO).';
     if(email && !/.+@.+\..+/.test(el.emailEstudiante.value)) return 'Ingresa un email institucional válido del estudiante.';
     return null; }
